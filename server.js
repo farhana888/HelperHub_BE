@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect("mongodb+srv://farhana000008:ZKA9PGSyNHdeJ7I2@helperhub.cu75y.mongodb.net/?retryWrites=true&w=majority&appName=helperhub")
     .then(() => console.log('MongoDB Connected'))
     .catch((error) => console.log(`MongoDB connection error: ${error.message}`));
 
