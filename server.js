@@ -13,7 +13,8 @@ const app = express();
 // Middleware to parse JSON requests
 app.use(express.json());
 app.use(cors({
-    origin: 'https://helperhub-be.onrender.com', // Replace this with the URL of your frontend
+  origin: 'http://localhost:3000', // Replace this with the URL of your frontend
+  credentials: true, // Allow credentials (cookies, headers, etc.) if needed
 }));
 // Connect to MongoDB
 mongoose.connect("mongodb+srv://farhana000008:ZKA9PGSyNHdeJ7I2@helperhub.cu75y.mongodb.net/?retryWrites=true&w=majority&appName=helperhub")
