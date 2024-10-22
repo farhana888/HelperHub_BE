@@ -2,11 +2,11 @@
   "name": "helperhub_be",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",  
-    "build": "echo 'Building for production...' && npm prune --production",  
+    "start": "node server.js",   // Correct this to point to your main file
+    "build": "echo 'Building for production...' && npm prune --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "farhana",
