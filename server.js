@@ -9,9 +9,7 @@ import cors from 'cors';
 
 dotenv.config();  // Load environment variables from .env file
 
-const MONGODB_URI="mongodb+srv://farhana000008:ZKA9PGSyNHdeJ7I2@helperhub.cu75y.mongodb.net/?retryWrites=true&w=majority&appName=helperhub";
-const PORT_CODE=8000;
-const JWT_SECRET=123456789;
+
 const app = express();
 
 // Middleware to parse JSON requests
@@ -22,9 +20,10 @@ app.use(cors({
     origin: ['http://localhost:3000'],
     credentials: true
 }));
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
 // Connect to MongoDB using the environment variable
-mongoose.connect(MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('MongoDB Connected'))
     .catch((error) => console.log(`MongoDB connection error: ${error.message}`));
 
@@ -40,7 +39,7 @@ app.get('/', (req, res) => {
 });
 
 // Start the server
-const PORT = PORT_CODE || 8000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
