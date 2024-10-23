@@ -1,14 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import jobRoutes from './routes/jobRoutes.js';
 import maidRoutes from './routes/maidRoutes.js';
 import bookingsRouter from './routes/bookings.js';
-import cors from 'cors';
 
 dotenv.config();  // Load environment variables from .env file
-
 
 const app = express();
 
@@ -17,13 +16,15 @@ app.use(express.json());
 
 // CORS configuration
 app.use(cors({
-    origin: ['http://localhost:3000'],
-    credentials: true
+    origin: ['http://localhost:3000', 'https://your-production-frontend-url.com'], // Add your production URL here
+    credentials: true  // Allow credentials such as cookies and headers
 }));
-console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
 // Connect to MongoDB using the environment variable
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => console.log('MongoDB Connected'))
     .catch((error) => console.log(`MongoDB connection error: ${error.message}`));
 
