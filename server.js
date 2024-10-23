@@ -7,7 +7,7 @@ import maidRoutes from './routes/maidRoutes.js';
 import bookingsRouter from './routes/bookings.js';
 import cors from 'cors';
 
-dotenv.config();
+dotenv.config();  // Load environment variables from .env file
 
 const app = express();
 
@@ -16,12 +16,12 @@ app.use(express.json());
 
 // CORS configuration
 app.use(cors({
-    origin: ['http://localhost:3000'], // Allow both localhost and production frontend URLs
-    credentials: true // If you're using cookies or sessions
+    origin: ['http://localhost:3000'],
+    credentials: true
 }));
 
-// Connect to MongoDB
-mongoose.connect("mongodb+srv://farhana000008:ZKA9PGSyNHdeJ7I2@helperhub.cu75y.mongodb.net/?retryWrites=true&w=majority&appName=helperhub")
+// Connect to MongoDB using the environment variable
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log('MongoDB Connected'))
     .catch((error) => console.log(`MongoDB connection error: ${error.message}`));
 
