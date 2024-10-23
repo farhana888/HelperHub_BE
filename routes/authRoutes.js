@@ -56,7 +56,7 @@ console.log(email, password,"data log1")
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
-
+        console.log("JWT_SECRET:", process.env.JWT_SECRET);
         // Generate JWT Token
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // 1 hour expiration
 
