@@ -40,23 +40,25 @@ router.post('/signup', async (req, res) => {
 // POST /api/login - Authenticate a user and generate JWT token
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
-console.log(email, password,"data log1")
+    const JWT_SECRET = 123456789;
+
+    console.log(email, password, "data log1")
     try {
         // Find user by email
         const user = await User.findOne({ email });
-        console.log(user,"user")
+        console.log(user, "user")
         if (!user) {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
 
         // Check password
         const isMatch = await user.matchPassword(password);
-        console.log(isMatch,"isMatch")
-        
+        console.log(isMatch, "isMatch")
+
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
-        console.log("JWT_SECRET:", process.env.JWT_SECRET);
+        console.log("JWT_SECRET:", JWT_SECRET);
         // Generate JWT Token
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // 1 hour expiration
 
