@@ -1,5 +1,6 @@
 import express from 'express';
 import Job from '../models/Job.js';
+import Booking from '../models/Booking.js';
 import { verifyToken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
@@ -27,7 +28,7 @@ router.get('/my-jobs/:maidId', async (req, res) => {
 
     try {
         // Find jobs where the maidId matches the request parameter
-        const jobs = await Job.find({ maidId: maidId });
+        const jobs = await Booking.find({ maidId: maidId });
 
         if (jobs.length === 0) {
             return res.status(404).json({ message: 'No jobs found for this maid.' });
