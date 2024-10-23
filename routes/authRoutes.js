@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid email or password' });
         }
-        console.log("JWT_SECRET:", JWT_SECRET);
+        console.log("JWT_SECRET:",process.env.JWT_SECRET);
         // Generate JWT Token
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // 1 hour expiration
 
@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
             token // Send token in response
         });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error: error.message });
+        return res.status(500).json({ message: 'Server error', error: error.message });
     }
 });
 
