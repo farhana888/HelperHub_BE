@@ -60,7 +60,7 @@ console.log(email, password,"data log1")
         // Generate JWT Token
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // 1 hour expiration
 
-        res.json({
+        return res.json({
             _id: user._id,
             name: user.name,
             email: user.email,
